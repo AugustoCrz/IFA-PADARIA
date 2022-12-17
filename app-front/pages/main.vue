@@ -8,15 +8,16 @@
             </div>
 
             <div id="buttons_nav">
-                <!-- Botão de Inicio -->
                 <b-navbar-nav>
-                    <b-nav-item class='icons_nav_menu' v-on:click="desativa_views(0)">
-                        <h3 class="buttn_icon_menu">Página inicial</h3>
+                    <b-nav-item class='icons_nav_menu' v-on:click="
+                    inicioView = true
+                    produtosView = false">
+                        <h3 class="buttn_icon_menu">Inicio</h3>
                     </b-nav-item>
 
-                    <!-- Botão do marketplace -->
                     <b-nav-item class='icons_nav_menu' v-on:click="
-                        desativa_views(1)">
+                    inicioView = false
+                    produtosView = true">
                         <h3 class="buttn_icon_menu">Produtos</h3>
                     </b-nav-item>
                 </b-navbar-nav>
@@ -33,39 +34,22 @@
                 </a>
             </div>
             <hr />
-            <!-- <input type="text" class="search" placeholder="Pesquisar por um produto"> -->
-
-            <!-- Lojas em destaque -->
-            <div id="lista_lojas_destaque_marketplace" v-if="(lojas.length > 0)">
-
-                <br />
-                <h4>Lojas em destaque <i class="fas fa-store"></i></h4>
-
-                <div id="lista_lojas_marketplace">
-                    <div v-for="(loja, index) in lojas" v-if="(index <= 2)">
-                        <a href="#">
-                            <div class="item_loja_marketplace_destaque" v-on:click="abrir_painel_loja(loja)">
-                                <h3>{{loja.nome}}</h3>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
             <!-- Produtos do marketplace -->
             <div id="lista_itens_marketplace">
                 <div v-for="produto in produtos">
-
                     <a href="#">
                         <div class="item_marketplace">
-                            <h3 class="nome_item_marketplace">{{produto.nome}}</h3>
+                            <h3 class="nome_item_marketplace">{{ produto.nome }}</h3>
 
-                            <p class="preco_item_marketplace">R${{produto.preco}}</p>
+                            <p class="preco_item_marketplace">R${{ produto.preco }}</p>
 
                             <div class="opcoes_item" v-if="modo_develop">
-                                <p class="btn_opcao_item" v-b-modal.modal-produto v-on:click="objeto_edita(1, produto.id)"><i class="fas fa-pen"></i></p>
+                                <p class="btn_opcao_item" v-b-modal.modal-produto
+                                    v-on:click="objeto_edita(produto.id)"><i class="fas fa-pen"></i></p>
 
-                                <p class="btn_opcao_item btn_opcao_excluir" v-on:click="removeSelectedProduto(produto.id)"><i class="fas fa-trash"></i></p>
+                                <p class="btn_opcao_item btn_opcao_excluir"
+                                    v-on:click="removeSelectedProduto(produto.id)"><i class="fas fa-trash"></i></p>
                             </div>
                         </div>
                     </a>
@@ -83,7 +67,10 @@
                 <h3>Seu carrinho está vazio! Adicione produtos para poder visualizar por aqui!</h3>
             </div> -->
 
-            <a href="#" class="a_btn_link"><p class="btn_item btn_retornar_pag" style="float: right; margin-top: 25px;" v-on:click="carrinhoPainelView = false">Retornar</p></a>
+            <a href="#" class="a_btn_link">
+                <p class="btn_item btn_retornar_pag" style="float: right; margin-top: 25px;"
+                    v-on:click="carrinhoPainelView = false">Retornar</p>
+            </a>
         </div>
 
         <!-- Modal para inserir ou editar produto -->
@@ -92,7 +79,7 @@
                 <b-form v-on:submit="operacao">
                     <label class="mr-sm-2" for="input_nome_produto">Nome do item:</label>
                     <b-form-input id="input_nome_produto" v-model="objetoProduto.nome" class="mb-2 mr-sm-2 mb-sm-0"
-                        placeholder="Ex: Chinelos" required></b-form-input> <br /> 
+                        placeholder="Ex: Chinelos" required></b-form-input> <br />
 
                     <label class="mr-sm-2" for="input_quantidade">Quantidade em estoque:</label>
                     <b-form-input v-model="objetoProduto.quantidade" id="input_quantidade" class="mb-2 mr-sm-2 mb-sm-0"
@@ -130,7 +117,7 @@ export default {
             redirect("/");
         } else {
             // This means that there IS a JWT so someone must be logged in.
-            $axios.defaults.headers.common.Authorization = `Bearer ${authToken}`; 
+            $axios.defaults.headers.common.Authorization = `Bearer ${authToken}`;
             // salva o token para usar nos headers nas requisições
         }
 
@@ -175,195 +162,45 @@ export default {
 
     methods: {
 
-        deslogar: function() {
+        deslogar: function () {
             window.location.href = "/";
         },
 
-        develop: function() {
+        develop: function () {
             this.modo_develop = !this.modo_develop;
 
             this.viewConfigAnterior = null;
             this.usuariosRegistradosView = false;
         },
 
-        objeto_adicionar: function(caso){
+        objeto_adicionar: function (caso) {
 
-            // 0 -> Loja, 1 -> Produto, 2 -> Ação, 3 -> Conta
-            if (caso == 0) { // Loja
-                this.objetoLoja = {
-                    nome: null,
-                    endereco: null,
-                    telefone: null,
-                    vendas: 0,
-                    saldo: 0
-                }
+            this.objetoProduto = {
+                nome: null,
+                quantidade: null,
+                categoria: null,
+                preco: null,
+                idLoja: 0
+            },
 
-                this.btn_edit_loja = false;
-                this.titulo_modal = "Nova Loja";
-                this.operacao = this.createNewLoja;
-            } else if(caso == 1) {
-                this.objetoProduto = {
-                    nome: null,
-                    quantidade: null,
-                    categoria: null,
-                    preco: null,
-                    idLoja: 0
-                },
-
-                this.btn_edit_produto = false;
-                this.titulo_modal = "Cadastro de Produto";
-                this.operacao = this.createNewProduto;
-            } else if(caso == 2) {
-                this.objetoAcao = {
-                    nome: null,
-                    tipo: null,
-                    preco: null
-                },
-
-                this.btn_edit_acao = false;
-                this.titulo_modal = "Cadastro de Ação";
-                this.operacao = this.createNewAcao;
-            } else {
-                this.objetoConta = {
-                    nome: null,
-                    sobrenome: null,
-                    endereco: null,
-                    saldo: 0
-                },
-
-                this.btn_edit_conta = false;
-                this.titulo_modal = "Cadastro de Conta";
-                this.operacao = this.createNewConta;
-            }
+            this.btn_edit_produto = false;
+            this.titulo_modal = "Cadastro de Produto";
+            this.operacao = this.createNewProduto;
         },
 
-        desativa_views: function (alvo) {
+        objeto_edita: function (id_alvo) {
+            this.$axios.$get(`produto/${id_alvo}`).then((response) => {
+                this.objetoProduto = response[0];
 
-            this.inicioView = false;
-            this.marketplaceView = false;
-            this.acoesView = false;
-            this.configsView = false;
-            this.lojaPainelView = false;
-            this.acaoPainelView = false;
-            this.carrinhoPainelView = false;
-            this.contaPainelView = false;
-
-            // 0 -> Inicio, 1 -> Marketplace, 2 -> Acoes, 3 -> Configurações
-            if(alvo == 0)
-                this.inicioView = true;
-            else if(alvo == 1)
-                this.marketplaceView = true;
-            else if(alvo == 2)
-                this.acoesView = true;
-            else
-                this.configsView = true;
+                this.titulo_modal = "Atualizar Produto";
+                this.operacao = this.updateSelectedProduto;
+                this.btn_edit_produto = true;
+            });
         },
 
-        objeto_edita: function(caso, id_alvo){
-
-            // 0 -> Loja, 1 -> Produto, 2 -> Ação, 3 -> Conta
-            if(caso == 0) { // Loja
-                this.$axios.$get(`loja/${id_alvo}`).then((response) => {
-                    this.objetoLoja = response[0];
-
-                    this.titulo_modal = "Atualizar Loja";
-                    this.operacao = this.updateSelectedLoja;
-                    this.btn_edit_loja = true;
-                })
-            } else if(caso == 1) {
-                this.$axios.$get(`produto/${id_alvo}`).then((response) => {
-                    this.objetoProduto = response[0];
-
-                    this.titulo_modal = "Atualizar Produto";
-                    this.operacao = this.updateSelectedProduto;
-                    this.btn_edit_produto = true;
-                });
-            } else if(caso == 2) {
-                this.$axios.$get(`acao/${id_alvo}`).then((response) => {
-                    this.objetoAcao = response[0];
-
-                    this.titulo_modal = "Atualizar Ação";
-                    this.operacao = this.updateSelectedAcao;
-                    this.btn_edit_acao = true;
-                })
-            } else {
-                this.$axios.$get(`conta/${id_alvo}`).then((response) => {
-                    this.objetoConta = response[0];
-
-                    this.titulo_modal = "Atualizar Conta";
-                    this.operacao = this.updateSelectedConta;
-                    this.btn_edit_conta = true;
-                })
-            }
-        },
-
-        ordena_amostragem: function (caso){
-
-            // 0 -> Lojas, 1 -> Produtos, 2 -> Ações 
-            this.lojasRegistradasView = false;
-            this.acoesRegistradasView = false;
-            this.produtosRegistradosView = false;
-            this.usuariosRegistradosView = false;
-
-            if(caso !== this.viewConfigAnterior){
-                if(caso == 0)
-                    this.lojasRegistradasView = true;
-                else if(caso == 1)
-                    this.produtosRegistradosView = true;
-                else if(caso == 2)
-                    this.acoesRegistradasView = true;
-                else
-                    this.usuariosRegistradosView = true;
-            }else{
-                this.lojasRegistradasView = false;
-                this.acoesRegistradasView = false;
-                this.usuariosRegistradosView = false;
-                this.produtosRegistradosView = false;
-
-                caso = null;
-            }
-
-            this.viewConfigAnterior = caso
-        },
-
-        abrir_carrinho: function() {
+        abrir_carrinho: function () {
 
             this.carrinhoPainelView = true;
-        },
-
-        abrir_painel_loja: function (dados) {
-
-            this.objetoLoja = dados;
-            this.atualiza_itens_loja(dados.id);
-        },
-
-        abrir_painel_acao: function (dados) {
-
-            this.objetoAcao = dados;
-            this.acaoPainelView = true;
-        },
-
-        abrir_painel_conta: function (dados) {
-
-            this.objetoConta = dados;
-            this.contaPainelView = true;
-        },
-
-        atualiza_itens_loja: function (id_loja) {
-
-            this.lojaPainelView = false;
-
-            this.objetoProduto.idLoja = id_loja;
-            this.id_loja_alvo = id_loja;
-
-            this.produtos_loja = [];
-
-            for(let i = 0; i < this.produtos.length; i++){
-                if(this.produtos[i].idLoja == id_loja)
-                    this.produtos_loja.push(this.produtos[i])
-            }
-
-            this.lojaPainelView = true;
         },
 
         createNewProduto: function (event) {
@@ -388,17 +225,17 @@ export default {
             event.preventDefault();
 
             this.$axios
-            .$post("produto/update", this.objetoProduto)
-            .then(() => {
-                this.updateProduto();
+                .$post("produto/update", this.objetoProduto)
+                .then(() => {
+                    this.updateProduto();
 
-                this.$bvModal.hide('modal-produto');
-                this.operacao = this.createNewProduto;
-            })
-            .catch((error) => {
-                console.error('Não foi possível atualizar o produto selecionado.');
-                console.log(error);
-            });
+                    this.$bvModal.hide('modal-produto');
+                    this.operacao = this.createNewProduto;
+                })
+                .catch((error) => {
+                    console.error('Não foi possível atualizar o produto selecionado.');
+                    console.log(error);
+                });
         },
 
         updateProduto: function () {
@@ -408,7 +245,7 @@ export default {
                 this.$bvModal.hide('modal-produto');
                 this.operacao = this.createNewProduto;
 
-                if(this.produtos.length < 1)
+                if (this.produtos.length < 1)
                     this.produtosRegistradosView = false;
             })
         },
