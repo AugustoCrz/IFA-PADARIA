@@ -31,8 +31,6 @@ export default {
   data() {
     return {
       login: {
-        // username: "",
-        // pwd: "",
         username: "augusto",
         pwd: "1234",
       },

@@ -19,7 +19,7 @@
         </div>
 
         <!-- Marketplace -->
-        <div class="invent-cards content_page" v-if="marketplaceView">
+        <div class="invent-cards content_page" v-if="produtosView">
             <div>
                 <h2>Produtos da padaria</h2>
 
@@ -38,7 +38,7 @@
 
                             <p class="preco_item_marketplace">R${{ produto.preco }}</p>
 
-                            <div class="opcoes_item" v-if="modo_develop">
+                            <div class="opcoes_item">
                                 <p class="btn_opcao_item" v-b-modal.modal-produto
                                     v-on:click="objeto_edita(produto.id)"><i class="fas fa-pen"></i></p>
 
@@ -146,8 +146,7 @@ export default {
                 nome: null,
                 quantidade: null,
                 categoria: null,
-                preco: null,
-                idLoja: null
+                preco: null
             },
 
             produtos: [],
@@ -156,25 +155,13 @@ export default {
 
     methods: {
 
-        deslogar: function () {
-            window.location.href = "/";
-        },
-
-        develop: function () {
-            this.modo_develop = !this.modo_develop;
-
-            this.viewConfigAnterior = null;
-            this.usuariosRegistradosView = false;
-        },
-
         objeto_adicionar: function (caso) {
 
             this.objetoProduto = {
                 nome: null,
                 quantidade: null,
                 categoria: null,
-                preco: null,
-                idLoja: 0
+                preco: null
             },
 
             this.btn_edit_produto = false;
@@ -238,9 +225,6 @@ export default {
 
                 this.$bvModal.hide('modal-produto');
                 this.operacao = this.createNewProduto;
-
-                if (this.produtos.length < 1)
-                    this.produtosRegistradosView = false;
             })
         },
 

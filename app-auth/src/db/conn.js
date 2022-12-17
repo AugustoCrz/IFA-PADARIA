@@ -16,7 +16,7 @@ module.exports = {
       if (err || !db)
         return callback(err);
 
-      dbConnection = db.db("upbank");
+      dbConnection = db.db("padaria");
       console.log("Conectado com sucesso ao MongoDB.");
 
       return callback();

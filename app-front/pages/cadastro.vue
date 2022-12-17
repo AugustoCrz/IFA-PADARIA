@@ -55,8 +55,7 @@ export default {
 
             this.$axios
                 .post("http://localhost:5000/user", this.user)
-                .then((response) => {
-                    console.log(response);
+                .then(() => {
                     this.$router.push("/");
                 })
                 .catch((error) => {
@@ -69,6 +68,5 @@ export default {
 </script>
 
 <style>
-@import '../static/login_style.css';
-@import '../static/animations.css';
+@import '../static/style.css';
 </style>
