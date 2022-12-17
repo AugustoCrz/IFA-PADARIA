@@ -1,12 +1,6 @@
 <template>
     <div>
-        <script src="https://kit.fontawesome.com/6c1b2d82eb.js" crossorigin="anonymous"></script>
-
         <div id="rodape_lateral">
-            <div class="invent-cards">
-                <img id="logo_app" src="~/assets/logo.png" />
-            </div>
-
             <div id="buttons_nav">
                 <b-navbar-nav>
                     <b-nav-item class='icons_nav_menu' v-on:click="

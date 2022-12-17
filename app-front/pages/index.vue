@@ -2,7 +2,6 @@
   <div id="corpo_login">
     <b-container>
       <div class="form_login">
-        <img id="logo_login" src="~/assets/logo.png" alt />
 
         <b-form @submit="doLogin">
           <b-form-group id="user" label="Usuário" label-for="user-input" label-align="left">

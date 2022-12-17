@@ -3,8 +3,6 @@
         <b-container>
             <div class="form_cadastro">
 
-                <img id="logo_login" src="~/assets/logo.png" alt />
-
                 <b-form @submit="doRegister">
                     <b-form-group id="user" label="Usuário" label-for="user-input"
                         description="Insira o seu nome de usuário" label-align="left">
