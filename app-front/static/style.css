@@ -1,0 +1,383 @@
+.icons_nav_menu {
+    width: 80%;
+    margin: 5px;
+    padding: 5px;
+    overflow: hidden;
+    text-align: center;
+    float: left !important;
+}
+
+.buttn_icon_menu {
+    padding: 5px;
+    border-radius: 15px;
+    transition: all .2s;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+    background-color: #BB86FC;
+    border: solid 1px rgb(50, 8, 83);
+}
+
+.buttn_icon_menu:hover {
+    background-color: #9169c2;
+}
+
+#rodape_lateral {
+    top: 0px;
+    left: 0px;
+    width: 30%;
+    height: 100%;
+    position: fixed;
+    color: white !important;
+    background: rgb(209, 191, 230);
+    background: linear-gradient(213deg, rgba(209, 191, 230, 1) 0%, rgba(106, 82, 134, 1) 100%);
+    box-shadow: 0px 0px 5px #685e72;
+}
+
+#buttons_nav {
+    width: 100%;
+    margin-top: 20%;
+    padding-left: 12%;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.titulo_pag {
+    margin: 5px;
+    margin-left: 15px;
+    color: white !important;
+}
+
+.content_page {
+    width: 70%;
+    padding: 2%;
+    float: right;
+    height: 100%;
+    margin-top: 2%;
+}
+
+#btn_operacoes {
+    width: 100%;
+    padding: 2%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, .2);
+}
+
+#itens_fnc_rapida {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.item_fnc_rapida {
+    width: 150px;
+    min-height: 25px;
+    margin-right: 5%;
+}
+
+input.search {
+    width: 90%;
+    margin-left: 5%;
+    padding-left: 2%;
+    border-radius: 15px;
+    border: solid 1px gainsboro;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, .2);
+}
+
+#lista_itens_marketplace,
+#lista_empresas_mercado,
+#lista_lojas_marketplace,
+#lista_usuarios_registrados {
+    width: 100%;
+    row-gap: 5px;
+    display: grid;
+    column-gap: 5px;
+    margin-top: 20px;
+    grid-template-columns: auto auto auto auto;
+}
+
+#lista_lojas_marketplace {
+    grid-template-columns: auto auto auto;
+}
+
+#lista_empresas_mercado,
+#lista_usuarios_registrados {
+    row-gap: 10px;
+    grid-template-columns: auto auto auto auto;
+}
+
+.item_marketplace,
+.item_m_acoes,
+.item_loja_marketplace,
+.item_loja_marketplace_destaque,
+.item_usuario_registrado {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    transition: all .2s;
+    background-color: rgb(136, 136, 136);
+}
+
+.item_loja_marketplace {
+    width: 218px;
+    overflow: hidden;
+}
+
+.item_usuario_registrado {
+    padding: 5%;
+    width: auto;
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+    background-color: rgb(53, 53, 53);
+}
+
+.item_marketplace {
+    padding: 5%;
+    width: 218px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.item_m_acoes {
+    overflow: hidden;
+    max-width: 250px;
+}
+
+.acao_nome {
+    float: left;
+    max-width: 50%;
+    overflow: hidden;
+}
+
+.acao_preco {
+    float: right;
+    max-width: 30%;
+    font-size: 22px;
+    overflow: hidden;
+    text-size-adjust: initial;
+}
+
+.nome_item_marketplace {
+    max-width: 65%;
+    float: left;
+    text-shadow: 1px 1px 2px black;
+}
+
+.preco_item_marketplace {
+    top: 80%;
+    max-width: 35%;
+    padding: 5px;
+    float: right;
+    font-size: 22px;
+    border-radius: 5px;
+    text-shadow: 1px 1px 2px black;
+    background-color: rgb(0, 94, 0);
+}
+
+.item_loja_marketplace {
+    height: 150px;
+    max-width: 250px;
+}
+
+.item_loja_marketplace:hover {
+    background-color: rgb(100, 100, 100);
+}
+
+.item_loja_marketplace>h3 {
+    float: left;
+    margin-top: 100px;
+    margin-left: 10px;
+}
+
+.item_loja_marketplace_destaque {
+    height: 100px;
+    overflow: hidden;
+    background: rgb(214, 173, 219);
+    transition: all 2s linear !important;
+    background: linear-gradient(142deg, rgba(214, 173, 219, 1) 0%, rgba(157, 123, 161, 1) 100%);
+}
+
+.item_loja_marketplace_destaque:hover {
+    background: rgb(157, 124, 161);
+    background: linear-gradient(142deg, rgba(167, 134, 172, 1) 0%, rgba(112, 82, 116, 1) 100%);
+    transition: all 2s linear !important;
+}
+
+.item_loja_marketplace_destaque>h3 {
+    float: left;
+    margin-top: 60px;
+    margin-left: 10px;
+    color: rgb(51, 51, 51);
+}
+
+.item_m_acoes {
+    height: 80px;
+    width: 200px;
+    background: rgb(1, 64, 61);
+    background: linear-gradient(142deg, rgba(1, 64, 61, 1) 0%, rgba(56, 56, 56, 1) 88%);
+}
+
+.item_marketplace:hover {
+    background-color: rgb(85, 85, 85);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, .5);
+}
+
+#banner_mercado_acoes {
+    width: 100%;
+    margin-top: 20px;
+    min-height: 150px;
+    border-radius: 10px;
+    background-color: rgb(212, 212, 212);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, .2);
+    animation: infinite linear 20s fundo_acoes;
+}
+
+.btn_item {
+    padding: 2px;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color: rgb(230, 230, 230);
+    transition: all .2s;
+}
+
+.btn_retornar_pag {
+    margin-right: 10px;
+    padding-right: 10px;
+    float: right;
+}
+
+.btn_item:hover,
+.btn_opcao_item:hover {
+    background-color: rgb(182, 182, 182);
+}
+
+.inserir_produto {
+    max-width: 200px;
+}
+
+i.fas {
+    width: 15px;
+    text-align: center;
+}
+
+.infos_acao {
+    color: white;
+    margin: 10px;
+    margin-top: 40px;
+    text-shadow: 2px 2px 2px black;
+}
+
+#painel_loja_preview,
+#painel_acao_preview,
+#painel_carrinho_preview {
+    top: 0px;
+    z-index: 2;
+    width: 68%;
+    right: 0px;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5%;
+    position: fixed;
+    background-color: white;
+}
+
+#painel_acao_preview {
+    width: 70%;
+    color: white;
+    padding-left: 40px;
+}
+
+.valor_acao_preview,
+.saldo_conta_preview {
+    float: right;
+    font-size: 90px;
+    font-weight: 500;
+    margin-top: -150px;
+    margin-right: 100px;
+    color: greenyellow;
+    text-shadow: 1px 1px 2px black;
+}
+
+.saldo_conta_preview {
+    font-size: 45px;
+}
+
+#banner_topo_acao_view {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -1;
+    height: 200px;
+    position: absolute;
+    padding: 0px !important;
+    background: rgb(1, 64, 61);
+    background: linear-gradient(142deg, rgba(1, 64, 61, 1) 0%, rgba(56, 56, 56, 1) 88%);
+}
+
+#logo_app {
+    width: 80px;
+    height: 80px;
+    margin-left: 38%;
+    margin-top: 10%;
+}
+
+.a_btn_link,
+.btn_item,
+.btn_opcao_item {
+    color: black;
+}
+
+.opcoes_item,
+.opcoes_item_usuario {
+    width: 120px;
+    height: 45px;
+    margin-top: 80px;
+    margin-left: 70px;
+    position: absolute;
+}
+
+.opcoes_item_usuario {
+    margin-top: -10px;
+    margin-left: 55px;
+}
+
+.btn_opcao_item {
+    float: left;
+    width: 45px;
+    height: 45px;
+    padding: 7px;
+    font-size: 25px;
+    margin-left: 15px;
+    padding-left: 12px;
+    position: relative;
+    border-radius: 5px;
+    transition: all .2s;
+    background-color: rgb(230, 230, 230);
+}
+
+.btn_opcao_excluir {
+    background-color: rgb(255, 139, 139);
+}
+
+.btn_opcao_excluir:hover {
+    background-color: rgb(255, 84, 84);
+}
+
+.opcoes_edit_loja {
+    right: 2%;
+    margin-top: -50px;
+    position: absolute;
+}
+
+#text_carrinho {
+    float: right;
+    margin-top: -46px;
+    margin-right: 20px;
+}
+
+.icon_carrinho_compras {
+    color: black;
+}
